@@ -25,6 +25,7 @@ public class Baza {
             //ako je veza ok
             System.out.println("Veza sa bazom je: "+dbConn);
             System.out.println("Veza uspostavljena\\n");
+            // pa sta je problem? ispisuje ti da je konekcija uspela pa radim aplikaciju nece da mi prikace rezultat
             
             naredba1 = dbConn.createStatement();
         }

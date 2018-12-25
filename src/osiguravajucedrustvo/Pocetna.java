@@ -5,6 +5,7 @@
 package osiguravajucedrustvo;
 
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,22 +17,6 @@ public class Pocetna extends javax.swing.JFrame {
      * Creates new form Pocetna
      */
     public Pocetna() {
-        String naredba = "SELECT * FROM O_NAMA";
-        
-        Baza baza = new Baza();
-        baza.poveziSaBazom();
-        
-        Object rowData;
-        try {
-            ResultSet rezultat = baza.naredba1.executeQuery(naredba);
-            
-            while (rezultat.next()) {
-                System.out.println(rezultat.getString("OPIS"));
-            }
-        } catch (Exception e) {
-            System.out.println("Greska : " + e.getMessage());
-        }
-        
         initComponents();
     }
 
@@ -45,9 +30,11 @@ public class Pocetna extends javax.swing.JFrame {
     private void initComponents() {
 
         naslovStranice = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jPokreni = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -55,7 +42,8 @@ public class Pocetna extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        autori = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,21 +51,29 @@ public class Pocetna extends javax.swing.JFrame {
         naslovStranice.setFont(new java.awt.Font("SansSerif", 0, 32)); // NOI18N
         naslovStranice.setText("Pocetna");
 
+        jTextPane1.setEditable(false);
+        jTextPane1.setText("Da biste videli osnovne podatke o osiguravajucem drustu pritisnite  dugme \"O nama\".");
+        jScrollPane2.setViewportView(jTextPane1);
+
+        jPokreni.setText("O nama");
+        jPokreni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPokreniActionPerformed(evt);
+            }
+        });
+
         jMenuBar1.setPreferredSize(new java.awt.Dimension(317, 63));
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/osiguravajucedrustvo/Slike/direktor.png"))); // NOI18N
         jMenu1.setText("Direktor");
         jMenu1.setMaximumSize(new java.awt.Dimension(113, 32767));
 
-        jMenuItem1.setText("Unos direktora");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem2.setText("Pregled direktora");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("Pregled direktora");
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -109,6 +105,11 @@ public class Pocetna extends javax.swing.JFrame {
         jMenu3.setMaximumSize(new java.awt.Dimension(103, 32767));
 
         jMenuItem5.setText("Unos klijenta");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
 
         jMenuItem6.setText("Pregled klijenta");
@@ -116,10 +117,19 @@ public class Pocetna extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/osiguravajucedrustvo/Slike/autor.png"))); // NOI18N
-        jMenu4.setText("O autorima");
-        jMenu4.setMaximumSize(new java.awt.Dimension(133, 32767));
-        jMenuBar1.add(jMenu4);
+        autori.setIcon(new javax.swing.ImageIcon(getClass().getResource("/osiguravajucedrustvo/Slike/autor.png"))); // NOI18N
+        autori.setText("O autorima");
+        autori.setMaximumSize(new java.awt.Dimension(133, 32767));
+
+        jMenuItem1.setText("O autorima");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        autori.add(jMenuItem1);
+
+        jMenuBar1.add(autori);
 
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/osiguravajucedrustvo/Slike/izlaz.png"))); // NOI18N
         jMenu5.setText("Izlaz");
@@ -133,7 +143,13 @@ public class Pocetna extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(naslovStranice, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(naslovStranice, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPokreni)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -141,7 +157,11 @@ public class Pocetna extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(naslovStranice, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(408, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 271, Short.MAX_VALUE)
+                .addComponent(jPokreni)
+                .addGap(34, 34, 34))
         );
 
         pack();
@@ -152,11 +172,28 @@ public class Pocetna extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+        UnosAgenta pan = new UnosAgenta();
+        pan.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void jPokreniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPokreniActionPerformed
+        PrikaziO_Nama pan = new PrikaziO_Nama();
+        pan.setVisible(true);
+    }//GEN-LAST:event_jPokreniActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        PregledDirektora pan = new PregledDirektora();
+        pan.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+   
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        UnosKlijenta pan = new UnosKlijenta();
+        pan.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        naslovStranice.setText("Unos direktora");
+    JOptionPane.showMessageDialog(null, "Luka Krstic\nKristina Nicovic\nNevena Ilic\nNenad Javorac\nEmilija Kokic\nStudenti IV godine Informatike i Racunarstva\nAplikacija Osiguravajucih Drustva");
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
@@ -194,10 +231,10 @@ public class Pocetna extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu autori;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -206,6 +243,9 @@ public class Pocetna extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JButton jPokreni;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel naslovStranice;
     // End of variables declaration//GEN-END:variables
 }

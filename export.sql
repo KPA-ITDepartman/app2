@@ -1,5 +1,5 @@
 --------------------------------------------------------
---  File created - Sunday-December-23-2018   
+--  File created - Tuesday-December-25-2018   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table AGENTI
@@ -40,13 +40,14 @@
 
   CREATE TABLE "EMMA"."O_NAMA" 
    (	"ID" NUMBER(*,0), 
-	"OPIS" VARCHAR2(160 BYTE), 
+	"OPIS" VARCHAR2(600 BYTE), 
 	"PIB" NUMBER(*,0), 
 	"MATICNI_BROJ" NUMBER(*,0), 
 	"MESTO" VARCHAR2(64 BYTE), 
 	"TELEFON" VARCHAR2(32 BYTE), 
 	"EMAIL" VARCHAR2(128 BYTE), 
-	"DIREKTOR" VARCHAR2(255 BYTE)
+	"IME_DIREKTORA" VARCHAR2(255 BYTE), 
+	"PREZIME_DIREKTORA" VARCHAR2(255 BYTE)
    ) SEGMENT CREATION IMMEDIATE 
   PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
@@ -82,11 +83,25 @@
   TABLESPACE "SYSTEM" ;
 REM INSERTING into EMMA.AGENTI
 SET DEFINE OFF;
+Insert into EMMA.AGENTI (ID,IME,PREZIME,TELEFON,EMAIL,DATUM_ZAPOSLENJA) values (1,'Tamara','Markovic','00381645896523','markovict@gmail.com','24.10.2015.');
+Insert into EMMA.AGENTI (ID,IME,PREZIME,TELEFON,EMAIL,DATUM_ZAPOSLENJA) values (2,'Uros','Jankovic','00381624585632','urosss@gmail.com','10.03.2013.');
+Insert into EMMA.AGENTI (ID,IME,PREZIME,TELEFON,EMAIL,DATUM_ZAPOSLENJA) values (3,'Mladen','Kovacevic','00381616542389','kovacm@gmail.com','26.01.2017.');
+Insert into EMMA.AGENTI (ID,IME,PREZIME,TELEFON,EMAIL,DATUM_ZAPOSLENJA) values (4,'Jovana','Jovanovic','00381695214325','jjovanovic@gmail.com','18.10.2016.');
+Insert into EMMA.AGENTI (ID,IME,PREZIME,TELEFON,EMAIL,DATUM_ZAPOSLENJA) values (5,'Aleksandar','Maric','00381624585369','alemaric@gmail.com','03.07.2018.');
 REM INSERTING into EMMA.KLIJENTI
 SET DEFINE OFF;
+Insert into EMMA.KLIJENTI (ID,IME,PREZIME,JMBG,ADRESA,TELEFON,TIP_KLIJENTA) values (1,'Aleksa','Peric',2418992586951,'Sarajevska 15','00381625478569','1');
 REM INSERTING into EMMA.O_NAMA
 SET DEFINE OFF;
+Insert into EMMA.O_NAMA (ID,OPIS,PIB,MATICNI_BROJ,MESTO,TELEFON,EMAIL,IME_DIREKTORA,PREZIME_DIREKTORA) values (1,'U širokoj lepezi životnih osiguranja nalaze se programi prilagoħeni svakom životnom dobu. U našoj ponudi su i obavezno i kasko osiguranje vozila, kao i osiguranje putnika, zdravstveno osiguranje u inostranstvu, osiguranje stanova i kuća, osiguranje imovine, kao i BIZNIS PLUS, namenjen osiguranju 450 delatnosti malih i srednjih preduzeća...',548372169,36925814,'Gospodara Vucica 50','00381625863459','osiguranje@gmail.com','Darko','Zivanovic');
+Insert into EMMA.O_NAMA (ID,OPIS,PIB,MATICNI_BROJ,MESTO,TELEFON,EMAIL,IME_DIREKTORA,PREZIME_DIREKTORA) values (2,'Život i zdravlje su nešto najvrednije što imamo. Svakodnevno brinemo o problemima koje možemo da rešimo, kao i o onim drugim, nerešivim.
+',789452143,56487215,'VojVode Stepe 12','00381616547856','secure@gmail.com','Petar','Peric');
+Insert into EMMA.O_NAMA (ID,OPIS,PIB,MATICNI_BROJ,MESTO,TELEFON,EMAIL,IME_DIREKTORA,PREZIME_DIREKTORA) values (3,'Život, zdravlje i štednja...... zvuči kao formula sreće i blagostanja, zar ne? Ovo osiguranje već generacijama osigurava vrednosti koje čoveku najviše znače: ŽIVOT i ZDRAVLJE.
+
+',521475632,12354785,'Ruzveltova 16','00681636485231','oskuca@gmail.com','Marta','Petrovic');
 REM INSERTING into EMMA.POLISE
 SET DEFINE OFF;
 REM INSERTING into EMMA.TIPOVI_KLIJENTA
 SET DEFINE OFF;
+Insert into EMMA.TIPOVI_KLIJENTA (ID,NAZIV) values ('1','Pravno');
+Insert into EMMA.TIPOVI_KLIJENTA (ID,NAZIV) values ('2','Fizicko');
