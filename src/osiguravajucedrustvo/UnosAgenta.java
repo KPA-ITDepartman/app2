@@ -49,6 +49,8 @@ public class UnosAgenta extends javax.swing.JFrame {
         jDodaj = new javax.swing.JButton();
         jObrisi = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPolise = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,22 +97,23 @@ public class UnosAgenta extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
         jLabel1.setText("Unos agenta");
 
+        jPolise.setText("Polise");
+        jPolise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPoliseActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/osiguravajucedrustvo/Slike/klijent-pocetna.png"))); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPronadji1)
-                .addGap(18, 18, 18)
-                .addComponent(jIzmeni)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jDodaj)
-                .addGap(18, 18, 18)
-                .addComponent(jObrisi))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
@@ -127,9 +130,25 @@ public class UnosAgenta extends javax.swing.JFrame {
                             .addComponent(tf_email)
                             .addComponent(tf_datum)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jPolise))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPronadji1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jIzmeni)
+                                .addGap(32, 32, 32)
+                                .addComponent(jDodaj)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                                .addComponent(jObrisi)))))
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(135, 135, 135))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,30 +178,33 @@ public class UnosAgenta extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tf_datum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPronadji1)
-                    .addComponent(jIzmeni)
-                    .addComponent(jObrisi)
-                    .addComponent(jDodaj))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jPronadji1)
+                            .addComponent(jIzmeni)
+                            .addComponent(jDodaj)
+                            .addComponent(jObrisi))
+                        .addGap(56, 56, 56)
+                        .addComponent(jPolise)
+                        .addGap(23, 23, 23))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -214,6 +236,7 @@ public class UnosAgenta extends javax.swing.JFrame {
             String naredbaSQL = "SELECT * FROM AGENTI WHERE ID = " + id;
 
             ResultSet rezultat = baza.naredba1.executeQuery(naredbaSQL);
+            
             while (rezultat.next()) {
                 ime = rezultat.getString("ime");
                 prezime = rezultat.getString("prezime");
@@ -221,7 +244,6 @@ public class UnosAgenta extends javax.swing.JFrame {
                 email = rezultat.getString("email");
                 datum = rezultat.getString("datum_zaposlenja");
             }
-            
         } catch (Exception e) {
             System.out.println("Izuzetak izbacen: " + e.getMessage());
         } finally {
@@ -229,6 +251,7 @@ public class UnosAgenta extends javax.swing.JFrame {
                 if (baza.naredba1 != null) {
                     baza.naredba1.close();
                 }
+                
                 if (baza.dbConn != null) {
                     baza.dbConn.close();
                 }
@@ -248,15 +271,15 @@ public class UnosAgenta extends javax.swing.JFrame {
         }  
     }//GEN-LAST:event_jIzmeniActionPerformed
 
-        private void azuriratiBazu() {
+    private void azuriratiBazu() {
         try {
             baza.poveziSaBazom();
             id = Integer.parseInt(tfr_br.getText());
-            ime = tf_ime.getText();
-            prezime = tf_prezime.getText();
-            telefon = tf_telefon.getText();
-            email = tf_email.getText();
-            datum = tf_datum.getText();
+            ime = tf_ime.getText().replace("'", "");
+            prezime = tf_prezime.getText().replace("'", "");
+            telefon = tf_telefon.getText().replace("'", "");
+            email = tf_email.getText().replace("'", "");
+            datum = tf_datum.getText().replace("'", "");
             
             String azurirajQuery = "UPDATE AGENTI SET ime = '" + ime + "', prezime = '" + prezime + "', telefon = '" + telefon + "', email = '" + email + "', datum_zaposlenja = '" + datum + "' WHERE ID = " + id + "";
             baza.naredba1.executeUpdate(azurirajQuery);
@@ -267,6 +290,7 @@ public class UnosAgenta extends javax.swing.JFrame {
                 if (baza.naredba1 != null) {
                     baza.naredba1.close();
                 }
+                
                 if (baza.dbConn != null) {
                     baza.dbConn.close();
                 }
@@ -304,7 +328,6 @@ public class UnosAgenta extends javax.swing.JFrame {
             String izbrisiQuery = "DELETE FROM AGENTI WHERE ID = " + id;
             System.out.println(izbrisiQuery);
             baza.naredba1.executeUpdate(izbrisiQuery);
-
         } catch (Exception e) {
             System.out.println("Greska prilikom brisanja!" + e.getMessage());
         } finally {
@@ -312,6 +335,7 @@ public class UnosAgenta extends javax.swing.JFrame {
                 if (baza.naredba1 != null) {
                     baza.naredba1.close();
                 }
+                
                 if (baza.dbConn != null) {
                     baza.dbConn.close();
                 }
@@ -321,16 +345,20 @@ public class UnosAgenta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jObrisiActionPerformed
 
+    private void jPoliseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPoliseActionPerformed
+        PregledPolisa pan = new PregledPolisa();
+        pan.setVisible(true);
+    }//GEN-LAST:event_jPoliseActionPerformed
+
     private void dodajUBazu() {
         try {
             baza.poveziSaBazom();
             id = Integer.parseInt(tfr_br.getText());
-            ime = tf_ime.getText();
-            prezime = tf_prezime.getText();
-            telefon = tf_telefon.getText();
-            email = tf_email.getText();
-            datum = tf_datum.getText();
-
+            ime = tf_ime.getText().replace("'", "");
+            prezime = tf_prezime.getText().replace("'", "");
+            telefon = tf_telefon.getText().replace("'", "");
+            email = tf_email.getText().replace("'", "");
+            datum = tf_datum.getText().replace("'", "");
 
             String proveriQuery = "SELECT * FROM AGENTI WHERE ID = " + id;
             ResultSet r = baza.naredba1.executeQuery(proveriQuery);
@@ -339,7 +367,6 @@ public class UnosAgenta extends javax.swing.JFrame {
                 String dodajQuery = "INSERT INTO AGENTI (id, ime, prezime, telefon, email, datum_zaposlenja)VALUES('" + id + "','" + ime + "','" + prezime + "', '" + telefon + "', '" + email + "', '" + datum + "')";
                 System.out.println(dodajQuery);
                 baza.naredba1.executeUpdate(dodajQuery);
-
             } else {
                 System.out.println("Vec postoji taj redni broj.");
             }
@@ -350,6 +377,7 @@ public class UnosAgenta extends javax.swing.JFrame {
                 if (baza.naredba1 != null) {
                     baza.naredba1.close();
                 }
+                
                 if (baza.dbConn != null) {
                     baza.dbConn.close();
                 }
@@ -402,10 +430,12 @@ public class UnosAgenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JButton jObrisi;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jPolise;
     private javax.swing.JButton jPronadji1;
     private javax.swing.JTextField tf_datum;
     private javax.swing.JTextField tf_email;

@@ -208,14 +208,14 @@ public class PrikaziO_Nama extends javax.swing.JFrame {
     }//GEN-LAST:event_jPronadjiActionPerformed
 
 
-private void pronadjiUBazi() {
+    private void pronadjiUBazi() {
         try {
             baza.poveziSaBazom();
             id = Integer.parseInt(tfr_br.getText());
 
             String naredbaSQL = "SELECT * FROM O_NAMA WHERE ID = " + id;
-
             ResultSet rezultat = baza.naredba1.executeQuery(naredbaSQL);
+            
             while (rezultat.next()) {
                 opis = rezultat.getString("opis");
                 pib = rezultat.getString("pib");
@@ -224,7 +224,6 @@ private void pronadjiUBazi() {
                 telefon = rezultat.getString("telefon");
                 email = rezultat.getString("email");
             }
-                        
         } catch (Exception e) {
             System.out.println("Izuzetak izbacen: " + e.getMessage());
         } finally {
@@ -232,6 +231,7 @@ private void pronadjiUBazi() {
                 if (baza.naredba1 != null) {
                     baza.naredba1.close();
                 }
+                
                 if (baza.dbConn != null) {
                     baza.dbConn.close();
                 }

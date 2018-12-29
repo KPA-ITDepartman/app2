@@ -23,13 +23,12 @@ public class UnosKlijenta extends javax.swing.JFrame {
         
         try {
             baza.poveziSaBazom();
-            String queryPol = "SELECT TIP_KLIJENTA FROM KLIJENTI";
+            String queryPol = "SELECT * FROM TIPOVI_KLIJENTA";
             ResultSet rezultat = baza.naredba1.executeQuery(queryPol);
 
             while (rezultat.next()) {
-                cb_tip.addItem(rezultat.getString("tip_klijenta"));
+                cb_tip.addItem(rezultat.getString("naziv"));
             }
-          
         } catch (Exception e) {
             System.out.println("Problem ComboBox : " + e);
         } finally {
@@ -37,6 +36,7 @@ public class UnosKlijenta extends javax.swing.JFrame {
                 if (baza.naredba1 != null) {
                     baza.naredba1.close();
                 }
+                
                 if (baza.dbConn != null) {
                     baza.dbConn.close();
                 }
@@ -74,7 +74,9 @@ public class UnosKlijenta extends javax.swing.JFrame {
         jLabel71 = new javax.swing.JLabel();
         tf_adresa = new javax.swing.JTextField();
         cb_tip = new javax.swing.JComboBox<>();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,91 +122,85 @@ public class UnosKlijenta extends javax.swing.JFrame {
 
         jLabel71.setText("JMBG:");
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
-        jLabel1.setText("Unos klijenta");
-
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jPronadji10)
-                .addGap(18, 18, 18)
-                .addComponent(jIzmeni9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jDodaj9)
-                .addGap(18, 18, 18)
-                .addComponent(jObrisi9))
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jPronadji10)
+                        .addGap(18, 18, 18)
+                        .addComponent(jIzmeni9)
+                        .addGap(18, 18, 18)
+                        .addComponent(jDodaj9)
+                        .addGap(18, 18, 18)
+                        .addComponent(jObrisi9))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel70)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cb_tip, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                                .addComponent(jLabel69)
-                                .addGap(205, 205, 205)
-                                .addComponent(tf_adresa, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel65)
-                                    .addComponent(jLabel67)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                                     .addComponent(jLabel66)
-                                    .addComponent(jLabel71)
-                                    .addComponent(jLabel68))
-                                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel10Layout.createSequentialGroup()
-                                        .addGap(183, 183, 183)
-                                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(tfr_br, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                                            .addComponent(tf_ime)
-                                            .addComponent(tf_prezime)
-                                            .addComponent(tf_jmbg)))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(tf_telefon, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(jLabel1)))
-                .addContainerGap(46, Short.MAX_VALUE))
+                                    .addGap(231, 231, 231)
+                                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(tf_prezime, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(tf_ime, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                                        .addComponent(tf_jmbg, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel10Layout.createSequentialGroup()
+                                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel69)
+                                        .addComponent(jLabel68))
+                                    .addGap(202, 202, 202)
+                                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(tf_adresa, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(tf_telefon, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(cb_tip, javax.swing.GroupLayout.Alignment.TRAILING, 0, 177, Short.MAX_VALUE)))
+                                .addGroup(jPanel10Layout.createSequentialGroup()
+                                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel67)
+                                        .addComponent(jLabel71))
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(jPanel10Layout.createSequentialGroup()
+                                    .addComponent(jLabel65)
+                                    .addGap(186, 186, 186)
+                                    .addComponent(tfr_br))))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(24, 24, 24)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel65)
                     .addComponent(tfr_br, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tf_ime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel66))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tf_prezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel67))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tf_jmbg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel71))
-                .addGap(19, 19, 19)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel66)
+                    .addComponent(tf_ime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel67)
+                    .addComponent(tf_prezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel71)
+                    .addComponent(tf_jmbg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel69)
                     .addComponent(tf_adresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel68, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tf_telefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel70)
                     .addComponent(cb_tip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jPronadji10)
                     .addComponent(jIzmeni9)
@@ -213,21 +209,51 @@ public class UnosKlijenta extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
+        jLabel1.setText("Unos klijenta");
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/osiguravajucedrustvo/Slike/klijenti1.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(24, 24, 24))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(11, 11, 11))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -241,31 +267,32 @@ public class UnosKlijenta extends javax.swing.JFrame {
         } else {
             izbrisiIzBaze();
         }
-        }
+    }
 
-        private void izbrisiIzBaze() {
+    private void izbrisiIzBaze() {
+        try {
+            baza.poveziSaBazom();
+            id = Integer.parseInt(tfr_br.getText());
+
+            String izbrisiQuery = "DELETE FROM KLIJENTI WHERE ID = " + id;
+            System.out.println(izbrisiQuery);
+            baza.naredba1.executeUpdate(izbrisiQuery);
+
+        } catch (Exception e) {
+            System.out.println("Greska prilikom brisanja!" + e.getMessage());
+        } finally {
             try {
-                baza.poveziSaBazom();
-                id = Integer.parseInt(tfr_br.getText());
-
-                String izbrisiQuery = "DELETE FROM KLIJENTI WHERE ID = " + id;
-                System.out.println(izbrisiQuery);
-                baza.naredba1.executeUpdate(izbrisiQuery);
-
-            } catch (Exception e) {
-                System.out.println("Greska prilikom brisanja!" + e.getMessage());
-            } finally {
-                try {
-                    if (baza.naredba1 != null) {
-                        baza.naredba1.close();
-                    }
-                    if (baza.dbConn != null) {
-                        baza.dbConn.close();
-                    }
-                } catch (SQLException sqlEx) {
-                    System.out.println("Greska prilikom zatvaranja baze! " + sqlEx.getMessage());
+                if (baza.naredba1 != null) {
+                    baza.naredba1.close();
                 }
+                
+                if (baza.dbConn != null) {
+                    baza.dbConn.close();
+                }
+            } catch (SQLException sqlEx) {
+                System.out.println("Greska prilikom zatvaranja baze! " + sqlEx.getMessage());
             }
+        }
     }//GEN-LAST:event_jObrisiActionPerformed
 
     private void jDodajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDodajActionPerformed
@@ -278,43 +305,6 @@ public class UnosKlijenta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jDodajActionPerformed
 
-    private void dodajUBazu() {
-        try {
-            baza.poveziSaBazom();
-
-            id = Integer.parseInt(tfr_br.getText());
-            ime = tf_ime.getText();
-            prezime = tf_prezime.getText();
-            jmbg = tf_jmbg.getText();
-            adresa = tf_adresa.getText();
-            telefon = tf_telefon.getText();
-            tip = cb_tip.getSelectedIndex() + 1;
-            
-            String proveriQuery = "SELECT * FROM KLIJENTI WHERE ID = " + id;
-            ResultSet r = baza.naredba1.executeQuery(proveriQuery);
-            if (!r.next()) {
-                String dodajQuery = "INSERT INTO KLIJENTI (id, ime, prezime, jmbg, adresa, telefon, tip_klijenta)VALUES('" + id + "','" + ime + "','" + prezime + "','" + jmbg + "','" + adresa + "','" + telefon + "','" + tip + "')";
-                System.out.println(dodajQuery);
-                baza.naredba1.executeUpdate(dodajQuery);
-            } else {
-                System.out.println("Vec postoji taj redni broj!");
-            }
-        } catch (Exception e) {
-            System.out.println("Neuspesno dodavanje u bazu!" + e.getMessage());
-        } finally {
-            try {
-                if (baza.naredba1 != null) {
-                    baza.naredba1.close();
-                }
-                if (baza.dbConn != null) {
-                    baza.dbConn.close();
-                }
-            } catch (SQLException sqlEx) {
-                System.out.println("Greska prilikom zatvaranja baze! " + sqlEx.getMessage());
-            }
-        }
-    }
-    
     private void jIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIzmeniActionPerformed
         System.out.println("Dugme izmeni pritisnuto.");
 
@@ -325,37 +315,6 @@ public class UnosKlijenta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jIzmeniActionPerformed
 
-    private void azuriratiBazu() {
-        try {
-            baza.poveziSaBazom();
-            id = Integer.parseInt(tfr_br.getText());
-            ime = tf_ime.getText();
-            prezime = tf_prezime.getText();
-            jmbg = tf_jmbg.getText();
-            adresa = tf_adresa.getText();
-            telefon = tf_telefon.getText();
-            tip = cb_tip.getSelectedIndex() + 1;
-            
-            
-            String azurirajQuery = "UPDATE KLIJENTI SET ime = '" + ime + "', prezime = '" + prezime + "', jmbg = '" + jmbg + "', adresa = '" + adresa + "', telefon = '" + telefon + "',"
-                    + "tip_klijenta = '" + tip + "' WHERE ID = " + id + "";
-            baza.naredba1.executeUpdate(azurirajQuery);
-        } catch (Exception e) {
-            System.out.println("Javila se greska prilikom izmene: " + e.getMessage());
-        } finally {
-            try {
-                if (baza.naredba1 != null) {
-                    baza.naredba1.close();
-                }
-                if (baza.dbConn != null) {
-                    baza.dbConn.close();
-                }
-            } catch (SQLException sqlEx) {
-                System.out.println("SQLIzuzetak za vreme close(): " + sqlEx.getMessage());
-            }
-        }
-    }
-    
     private void jPronadji1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPronadji1ActionPerformed
         System.out.println("Dugme pronadji pritisnuto");
 
@@ -374,6 +333,76 @@ public class UnosKlijenta extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jPronadji1ActionPerformed
 
+    private void dodajUBazu() {
+        try {
+            baza.poveziSaBazom();
+
+            id = Integer.parseInt(tfr_br.getText());
+            ime = tf_ime.getText().replace("'", "");
+            prezime = tf_prezime.getText().replace("'", "");
+            jmbg = tf_jmbg.getText().replace("'", "");
+            adresa = tf_adresa.getText().replace("'", "");
+            telefon = tf_telefon.getText().replace("'", "");
+            tip = cb_tip.getSelectedIndex() + 1;
+            
+            String proveriQuery = "SELECT * FROM KLIJENTI WHERE ID = " + id;
+            ResultSet r = baza.naredba1.executeQuery(proveriQuery);
+            
+            if (!r.next()) {
+                String dodajQuery = "INSERT INTO KLIJENTI (id, ime, prezime, jmbg, adresa, telefon, tip_klijenta)VALUES('" + id + "','" + ime + "','" + prezime + "','" + jmbg + "','" + adresa + "','" + telefon + "','" + tip + "')";
+                System.out.println(dodajQuery);
+                baza.naredba1.executeUpdate(dodajQuery);
+            } else {
+                System.out.println("Vec postoji taj redni broj!");
+            }
+        } catch (Exception e) {
+            System.out.println("Neuspesno dodavanje u bazu!" + e.getMessage());
+        } finally {
+            try {
+                if (baza.naredba1 != null) {
+                    baza.naredba1.close();
+                }
+                
+                if (baza.dbConn != null) {
+                    baza.dbConn.close();
+                }
+            } catch (SQLException sqlEx) {
+                System.out.println("Greska prilikom zatvaranja baze! " + sqlEx.getMessage());
+            }
+        }
+    }
+    
+    private void azuriratiBazu() {
+        try {
+            baza.poveziSaBazom();
+            id = Integer.parseInt(tfr_br.getText());
+            ime = tf_ime.getText().replace("'", "");
+            prezime = tf_prezime.getText().replace("'", "");
+            jmbg = tf_jmbg.getText().replace("'", "");
+            adresa = tf_adresa.getText().replace("'", "");
+            telefon = tf_telefon.getText().replace("'", "");
+            tip = cb_tip.getSelectedIndex() + 1;
+            
+            String azurirajQuery = "UPDATE KLIJENTI SET ime = '" + ime + "', prezime = '" + prezime + "', jmbg = '" + jmbg + "', adresa = '" + adresa + "', telefon = '" + telefon + "',"
+                    + "tip_klijenta = '" + tip + "' WHERE ID = " + id + "";
+            baza.naredba1.executeUpdate(azurirajQuery);
+        } catch (Exception e) {
+            System.out.println("Javila se greska prilikom izmene: " + e.getMessage());
+        } finally {
+            try {
+                if (baza.naredba1 != null) {
+                    baza.naredba1.close();
+                }
+                
+                if (baza.dbConn != null) {
+                    baza.dbConn.close();
+                }
+            } catch (SQLException sqlEx) {
+                System.out.println("SQLIzuzetak za vreme close(): " + sqlEx.getMessage());
+            }
+        }
+    }
+    
     private void pronadjiUBazi() {
         try {
             baza.poveziSaBazom();
@@ -382,6 +411,7 @@ public class UnosKlijenta extends javax.swing.JFrame {
             String naredbaSQL = "SELECT * FROM KLIJENTI WHERE ID = " + id;
 
             ResultSet rezultat = baza.naredba1.executeQuery(naredbaSQL);
+            
             while (rezultat.next()) {
                 ime = rezultat.getString("ime");
                 prezime = rezultat.getString("prezime");
@@ -389,13 +419,14 @@ public class UnosKlijenta extends javax.swing.JFrame {
                 adresa = rezultat.getString("adresa");
                 telefon = rezultat.getString("telefon");
             }
+            
             String naredbaSQL2 = "SELECT t.id, t.naziv FROM TIPOVI_KLIJENTA t, KLIJENTI k WHERE k.tip_klijenta = t.id AND k.id = " + id;
             ResultSet r = baza.naredba1.executeQuery(naredbaSQL2);
+            
             while (r.next()) {
                 t = r.getString("naziv");
                 System.out.println(t);
             }
-
         } catch (Exception e) {
             System.out.println("Izuzeztak izbacen: " + e.getMessage());
         } finally {
@@ -403,6 +434,7 @@ public class UnosKlijenta extends javax.swing.JFrame {
                 if (baza.naredba1 != null) {
                     baza.naredba1.close();
                 }
+                
                 if (baza.dbConn != null) {
                     baza.dbConn.close();
                 }
@@ -453,6 +485,7 @@ public class UnosKlijenta extends javax.swing.JFrame {
     private javax.swing.JButton jDodaj9;
     private javax.swing.JButton jIzmeni9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel67;
@@ -461,6 +494,7 @@ public class UnosKlijenta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel70;
     private javax.swing.JLabel jLabel71;
     private javax.swing.JButton jObrisi9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JButton jPronadji10;
     private javax.swing.JTextField tf_adresa;

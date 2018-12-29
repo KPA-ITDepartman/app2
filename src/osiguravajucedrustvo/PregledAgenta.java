@@ -16,17 +16,18 @@ import javax.swing.JViewport;
  *
  * @author emma
  */
-public class PregledDirektora extends javax.swing.JFrame {
+public class PregledAgenta extends javax.swing.JFrame {
     Baza baza = new Baza();
-    String naredba = "SELECT IME_DIREKTORA, PREZIME_DIREKTORA FROM O_NAMA";
-    String colNames[] = {"Ime Direktora", "Prezime Direktora"};
+    String naredba = "SELECT ime, prezime, telefon, email, datum_zaposlenja FROM AGENTI";
+    String colNames[] = {"Ime", "Prezime", "Telefon", "Email", "Datum zaposlenja"};
     
-    public PregledDirektora() {
+    public PregledAgenta() {
         initComponents();
         
         try {
             baza.poveziSaBazom();
-            String query = "SELECT IME_DIREKTORA, PREZIME_DIREKTORA FROM O_NAMA";
+            
+            String query = "SELECT ime, prezime, telefon, email, datum_zaposlenja FROM AGENTI";
             ResultSet rezultat = baza.naredba1.executeQuery(query);
             JViewport view = tableScroller.getViewport();
 
@@ -58,7 +59,6 @@ public class PregledDirektora extends javax.swing.JFrame {
             }
             
             JTable table = new JTable(rowDataS, colNames);
-            
             view.add(table);
         } catch (Exception e) {
             System.out.println("Problem ComboBox : " + e);
@@ -79,8 +79,7 @@ public class PregledDirektora extends javax.swing.JFrame {
     
     public JTable createTable() {
         Vector dataSet = new Vector();
-        JTable tableResult = null;
-
+        
         try {
             baza.poveziSaBazom();
             String naredbaSQL = naredba;
@@ -112,9 +111,12 @@ public class PregledDirektora extends javax.swing.JFrame {
                 }
             }
             
-            tableResult = new JTable(rowDataS, colNames);
+            JTable table = new JTable(rowDataS, colNames);
+            
+            return table;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return null;
         } finally {
             try {
                 if (baza.naredba1 != null) {
@@ -129,9 +131,8 @@ public class PregledDirektora extends javax.swing.JFrame {
                         + sqle.getMessage());
             }
         }
-            
-        return tableResult;
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -165,7 +166,7 @@ public class PregledDirektora extends javax.swing.JFrame {
         tableScroller.setViewportView(table);
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 36)); // NOI18N
-        jLabel2.setText("Pregled direktora");
+        jLabel2.setText("Pregled agenta");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -174,21 +175,21 @@ public class PregledDirektora extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(jLabel2))
+                        .addGap(41, 41, 41)
+                        .addComponent(tableScroller, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tableScroller, javax.swing.GroupLayout.PREFERRED_SIZE, 477, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(143, 143, 143)
+                        .addComponent(jLabel2)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(tableScroller, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -222,21 +223,20 @@ public class PregledDirektora extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PregledDirektora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PregledAgenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PregledDirektora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PregledAgenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PregledDirektora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PregledAgenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PregledDirektora.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PregledAgenta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PregledDirektora().setVisible(true);
+                new PregledAgenta().setVisible(true);
             }
         });
     }
